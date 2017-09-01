@@ -118,6 +118,12 @@ Route::get('/readsoftdelete',function(){
 
 });
 
+//restore the deleted data
 Route::get('/restore',function(){
     Post::withTrashed()->where('is_admin',0)->restore();
+});
+
+//force delete the data
+Route::get('/forcedelete',function(){
+    Post::onlyTrashed()->where('is_admin',0)->forceDelete();
 });
