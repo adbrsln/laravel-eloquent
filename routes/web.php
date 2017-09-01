@@ -75,3 +75,7 @@ Route::get('/create',function(){
         ]
     );
 });
+
+Route::get('/update',function(){
+    Post::where('id',4)->where('is_admin',0)->update(['title'=>'updated NEWEST content','content'=>'This is updated content. i love my instructor']);
+});
