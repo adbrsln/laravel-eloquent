@@ -75,7 +75,21 @@ Route::get('/create',function(){
         ]
     );
 });
-
+//update function
 Route::get('/update',function(){
     Post::where('id',4)->where('is_admin',0)->update(['title'=>'updated NEWEST content','content'=>'This is updated content. i love my instructor']);
+});
+
+//delete function
+Route::get('/delete',function(){
+    $post = Post::find(6);
+    $post->delete();
+});
+
+//delete function
+Route::get('/delete3',function(){
+    Post::destroy([4,5]);
+    
+    //using the query
+    //Post::where('is_admin',0)->delete();
 });
