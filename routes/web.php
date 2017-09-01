@@ -98,3 +98,23 @@ Route::get('/delete3',function(){
 Route::get('/softdelete',function(){
     Post::find(1)->delete();
 });
+
+//read softdelete
+Route::get('/readsoftdelete',function(){
+    // $post = Post::find(1);
+    // return $post;
+
+    //certain post
+    // $post = Post::withTrashed()->where('id',1)->get();
+    // return $post;
+
+    //all post with all softdelete
+    // $post = Post::withTrashed()->where('is_admin',0)->get();
+    // return $post;
+
+    //all post with softdelete
+    $post = Post::onlyTrashed()->where('is_admin',0)->get();
+    return $post;
+
+});
+
