@@ -66,3 +66,12 @@ Route::get('/basicinsert2',function(){
     $post->content='Lorem ipsupm this is eloquent is really cool';
     $post->save();
 });
+
+Route::get('/create',function(){
+    Post::create(
+        [
+            'title'=>'the  created method',
+            'content'=>'wow im learning the created method'
+        ]
+    );
+});
