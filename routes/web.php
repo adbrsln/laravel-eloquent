@@ -93,3 +93,8 @@ Route::get('/delete3',function(){
     //using the query
     //Post::where('is_admin',0)->delete();
 });
+
+//softdelete 
+Route::get('/softdelete',function(){
+    Post::find(1)->delete();
+});
