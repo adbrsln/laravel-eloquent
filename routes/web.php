@@ -40,7 +40,8 @@ Route::get('/findwhere',function(){
     return $post;
 });
 
-Route::get('/findmore',function(){
+//try catch laravel eloquent
+Route::get('/findmores',function(){
     $posts = Post::findOrFail(4); //try to find a record error post #4 is not available
     return $posts;
 });
@@ -48,4 +49,20 @@ Route::get('/findmore',function(){
 Route::get('/findmore',function(){
     $posts = Post::where('users_count', '<', 50)->firstOrFail();
     return $posts;
+});
+
+//eloquent insert new data
+Route::get('/basicinsert',function(){
+    $post = new Post;
+    $post->title='new Eloquent title';
+    $post->content='Lorem ipsupm this is eloquent  is really cool';
+    $post->save();
+});
+
+//eloquent update data 
+Route::get('/basicinsert2',function(){
+    $post = Post::findOrFail(1);
+    $post->title='New Updated #1 title';
+    $post->content='Lorem ipsupm this is eloquent is really cool';
+    $post->save();
 });
