@@ -26,4 +26,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //ELEQUENT RELATIONSHIP : ONE TO ONE
+    //desc:  since 1 post is made by one user
+    public function post(){
+        //this will use the id in table user connected to post column user_id column
+        return $this->hasOne('App\Post');
+    }
 }

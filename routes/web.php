@@ -1,5 +1,7 @@
 <?php
+//import post and user model
 use App\Post;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,6 +72,7 @@ Route::get('/basicinsert2',function(){
 Route::get('/create',function(){
     Post::create(
         [
+            'user_id' => Auth::user()->id,
             'title'=>'the  created method',
             'content'=>'wow im learning the created method'
         ]
@@ -120,10 +123,15 @@ Route::get('/readsoftdelete',function(){
 
 //restore the deleted data
 Route::get('/restore',function(){
-    Post::withTrashed()->where('is_admin',0)->restore();
+    Post::withTrashed()->where('is_admin',0)->restore(); 
 });
 
 //force delete the data
 Route::get('/forcedelete',function(){
     Post::onlyTrashed()->where('is_admin',0)->forceDelete();
+});
+
+//Elequent Relationship ONE TO ONE 
+Route::get('/user/{id}/post', function($id){
+    return User::find(1)->post;
 });
