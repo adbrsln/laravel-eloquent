@@ -15,4 +15,9 @@ class Post extends Model
         'title',
         'content'
     ];
+
+    //One to one relation ship to user
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

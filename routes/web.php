@@ -135,3 +135,8 @@ Route::get('/forcedelete',function(){
 Route::get('/user/{id}/post', function($id){
     return User::find(1)->post;
 });
+//Elequent Relationship ONE TO ONE: inverse relation
+//desc: get user id from the post
+Route::get('/post/{id}/user', function($id){
+    return Post::find($id)->user->name;
+});
