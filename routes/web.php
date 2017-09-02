@@ -133,19 +133,35 @@ Route::get('/forcedelete',function(){
 
 //Elequent Relationship ONE TO ONE 
 Route::get('/user/{id}/post', function($id){
-    return User::find(1)->post;
+    return User::findOrFail($id)->post;
 });
 //Elequent Relationship ONE TO ONE: inverse relation
 //desc: get user id from the post
 Route::get('/post/{id}/user', function($id){
-    return Post::find($id)->user->name;
+    return Post::findOrFail($id)->user->name;
 });
 
 //Elequent Relationship ONE TO Many
 //desc: get all post from user
 Route::get('/post', function(){
-    $user = User::find(1);
+    $user = User::findOrFail($id);
     foreach($user->posts as $post){
         echo $post->title . "</br>";
     }
 });
+
+//Elequent Relationship Many to Many
+//desc: get all post from user
+Route::get('/user/{id}/role', function($id){
+    //get all roles current user id
+    $user = User::findOrFail($id)->roles()->orderBy('id','asc')->get();
+    
+    return $user;
+
+    //get current role
+    // $user = User::findOrFail($id);
+    // foreach($user->roles as $role){
+    //     return $role->name ;
+    // }
+});
+
