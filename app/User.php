@@ -33,4 +33,11 @@ class User extends Authenticatable
         //this will use the id in table user connected to post column user_id column
         return $this->hasOne('App\Post');
     }
+
+    //ELEQUENT RELATIONSHIP : ONE TO Many
+    //desc:  return all posts
+    public function posts(){
+        //this will use the id in table user connected to post column user_id column
+        return $this->hasMany('App\Post');
+    }
 }
