@@ -2,6 +2,9 @@
 //import post and user model
 use App\Post;
 use App\User;
+use App\Role;
+use App\Photo;
+use App\Country;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -151,7 +154,7 @@ Route::get('/post', function(){
 });
 
 //Elequent Relationship Many to Many
-//desc: get all post from user
+//desc: get all roles from user
 Route::get('/user/{id}/role', function($id){
     //get all roles current user id
     $user = User::findOrFail($id)->roles()->orderBy('id','asc')->get();
@@ -165,3 +168,29 @@ Route::get('/user/{id}/role', function($id){
     // }
 });
 
+//Accessing the intermeidiate table / pivot table / hybrid lookup table
+//desc: 
+Route::get('/user/pivot', function(){
+    $role = Role::findOrFail(1);
+    foreach($role->users as $user){
+        echo $user->pivot->created_at;
+    }
+});
+
+//Accessing the intermeidiate table / pivot table / hybrid lookup table
+//desc: 
+Route::get('/user/country', function(){
+    $country = Country::findOrFail(2);
+    foreach($country->posts as $post){
+        return $post->title;
+    }
+});
+
+//polymorphic relation
+Route::get('/user/photos', function(){
+    $user = User::findOrFail(1);
+    
+    foreach($user->photos as $photo){
+        return $photo;
+    }
+});

@@ -44,6 +44,16 @@ class User extends Authenticatable
     //ELEQUENT RELATIONSHIP : Many to Many
     public function roles(){
         //this will use the id in table user connected to post column user_id column
+         
         return $this->belongsToMany('App\Role');
+
+        //to customize tables name and columns  follow the format below
+
+        // return $this->belongsToMany('App\Role','user_roles', 'user_id','role_id');
+       
+    }
+
+    public function photos(){
+        return $this->morphMany('App\Photo','imageable');
     }
 }

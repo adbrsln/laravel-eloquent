@@ -11,7 +11,7 @@ class Post extends Model
     protected $date= ['deleted_at'];
 
     protected $fillable = [
-        'user_id',
+        //'user_id',
         'title',
         'content'
     ];
@@ -19,5 +19,8 @@ class Post extends Model
     //One to one relation ship to user
     public function user(){
         return $this->belongsTo('App\User');
+    }
+    public function photos(){
+        return $this->morphMany('App\Photo','imageable');
     }
 }
