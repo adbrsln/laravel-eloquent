@@ -9,6 +9,9 @@ class Photo extends Model
     public function  imageable(){
         return $this->morphTo();
     }
+    public function  tags(){
+        return $this->morphToMany('App\Tag','taggable');
+    }
 }
 
 //main table
